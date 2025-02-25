@@ -1,0 +1,18 @@
+{{- if eq .Values.postgres.deployment.local "true"}}
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    service: postgres-n8n
+  name: postgres-service
+  namespace: {{ .Release.Namespace }}
+spec:
+  clusterIP: None
+  ports:
+    - name: postgres-port
+      port: {{ .Values.postgres.port }}
+      targetPort: {{ .Values.postgres.port }}
+      protocol: TCP
+  selector:
+    service: postgres-n8n
+{{- end }}

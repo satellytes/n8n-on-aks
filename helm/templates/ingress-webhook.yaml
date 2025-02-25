@@ -1,0 +1,23 @@
+{{/*apiVersion: networking.k8s.io/v1*/}}
+{{/*kind: Ingress*/}}
+{{/*metadata:*/}}
+{{/*  name: {{ include "n8n.fullname" . }}-webhook*/}}
+{{/*  annotations:*/}}
+{{/*    cert-manager.io/cluster-issuer: letsencrypt*/}}
+{{/*spec:*/}}
+{{/*  ingressClassName: nginx*/}}
+{{/*  tls:*/}}
+{{/*    - hosts:*/}}
+{{/*        - {{ .Values.n8n.url }}*/}}
+{{/*      secretName: n8n-tls*/}}
+{{/*  rules:*/}}
+{{/*    - host: {{ .Values.n8n.url }}*/}}
+{{/*      http:*/}}
+{{/*        paths:*/}}
+{{/*          - path: /webhook/*/}}
+{{/*            pathType: ImplementationSpecific*/}}
+{{/*            backend:*/}}
+{{/*              service:*/}}
+{{/*                name: {{ include "n8n.fullname" . }}-webhook*/}}
+{{/*                port:*/}}
+{{/*                  number: 5678*/}}

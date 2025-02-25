@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ include "n8n.fullname" . }}-main
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+    nginx.ingress.kubernetes.io/auth-signin: https://$host/oauth2/start?rd=$escaped_request_uri
+    nginx.ingress.kubernetes.io/auth-url: https://$host/oauth2/auth
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - {{ .Values.n8n.url }}
+      secretName: n8n-tls
+  rules:
+    - host: {{ .Values.n8n.url }}
+      http:
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: {{ include "n8n.fullname" . }}
+                port:
+                  number: 5678
