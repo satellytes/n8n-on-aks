@@ -43,10 +43,6 @@ The Helm chart deploys several key components:
 ### Security Features
 - OAuth2 authentication using Azure AD
 - TLS encryption using Let's Encrypt certificates
-- Secure secret management for:
-  - Database credentials
-  - Redis passwords
-  - OAuth2 secrets
 
 ### Configuration
 The setup is configurable through:
